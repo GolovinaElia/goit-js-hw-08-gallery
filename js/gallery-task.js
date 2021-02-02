@@ -1,20 +1,18 @@
-/* <li class="gallery__item">
-  <a
-    class="gallery__link"
-    href="https://cdn.pixabay.com/photo/2010/12/13/10/13/tulips-2546_1280.jpg"
-  >
-    <img
-      class="gallery__image"
-      src="https://cdn.pixabay.com/photo/2010/12/13/10/13/tulips-2546__340.jpg"
-      data-source="https://cdn.pixabay.com/photo/2010/12/13/10/13/tulips-2546_1280.jpg"
-      alt="Tulips"
-    />
-  </a>
-</li> */
-import imageRef from "../gallery-items.js";
+import imgRef from "../gallery-items.js";
 const galleryRef = document.querySelector('.js-gallery');
-let element = document.createElement('li');
-ingredients.forEach((elem) => {
-ingredientsRef.insertAdjacentHTML('beforeend', `<li>${elem}</li>`);
-});
-console.log(ingredientsRef);
+const markup = imgRef.reduce((acc, { preview, original, description }) => {
+  acc += `<li class="gallery__item"><a class="gallery__link" href=${original}
+  ><img class="gallery__image" src=${preview} data-source=${original}
+  alt=${description}/></a></li>`;
+  return acc;
+}, '')
+galleryRef.innerHTML += markup;
+
+galleryRef.addEventListener('click', onImgClick);
+
+function onImgClick(event) {
+  event.preventDefault()
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  };
+};
