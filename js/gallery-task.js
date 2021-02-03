@@ -11,8 +11,9 @@ galleryRef.innerHTML += markup;
 galleryRef.addEventListener('click', onImgClick);
 
 function onImgClick(event) {
-  event.preventDefault()
+  // event.preventDefault()
   if (event.target.nodeName !== 'IMG') {
     return;
   };
+  console.log(event.target.dataset.source);
 };
