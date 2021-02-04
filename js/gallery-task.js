@@ -9,11 +9,28 @@ const markup = imgRef.reduce((acc, { preview, original, description }) => {
 galleryRef.innerHTML += markup;
 
 galleryRef.addEventListener('click', onImgClick);
+const openModal = document.querySelector('.lightbox');
+const modalImg = document.querySelector('.lightbox__image');
+const closeModalBtn = document.querySelector('button[data-action="close-lightbox"]');
 
 function onImgClick(event) {
-  // event.preventDefault()
+  event.preventDefault()
   if (event.target.nodeName !== 'IMG') {
     return;
   };
-  console.log(event.target.dataset.source);
+  openModal.classList.add('is-open');
+  // const orgImg = event.target.dataset.source;
+  // console.log(orgImg);
+
+  imgRef.forEach((elem) => {
+  modalImg.src = `${elem.original}`;
+  modalImg.alt = `${elem.description}`;
+  });
 };
+closeModalBtn.addEventListener('click', isModalImg);
+function isModalImg() {
+  openModal.classList.remove('is-open');
+  modalImg.src = '';
+  modalImg.alt = '';
+};
+isModalImg();
