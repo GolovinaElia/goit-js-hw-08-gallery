@@ -27,4 +27,3 @@ function onModalBtn() {
   openModal.classList.remove('is-open');
   modalImg.src = '';
 };
-onModalBtn();
